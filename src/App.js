@@ -85,45 +85,45 @@ function Portfolio() {
     const projects = [
         {
             id: 1,
-            title: "Project 1",
+            title: "ROBOTICS",
             description:
-                "A modern e-commerce mobile application with intuitive user experience and seamless checkout process.",
-            tags: ["Mobile Design", "UI/UX", "Figma", "Prototyping"],
+                " The design and creation of machines that can perform tasks automatically, combining mechanics, electronics, and computer programming.",
+            tags: ["Robotics", "Automation", "Sensors", "Microcontrollers", "Embedded Systems"],
         },
         {
             id: 2,
-            title: "Project 2",
+            title: "ELECTRONICS",
             description:
-                "Clean and professional dashboard design for a SaaS platform with data visualization and user management.",
-            tags: ["Web Design", "Dashboard", "Data Viz", "React"],
+                " The study and application of circuits and devices that control electrical currents for tasks like communication, computation, and sensing.",
+            tags: ["Electronics", "Circuits", "PCB Design", "Microcontrollers", "Signal Processing"],
         },
         {
             id: 3,
-            title: "Project 3",
+            title: "DATA ANALYSIS",
             description:
-                "Complete redesign of a banking application focusing on accessibility and user-friendly financial management.",
-            tags: ["Mobile App", "Fintech", "Accessibility", "UX Research"],
+                "The process of inspecting and interpreting data to discover patterns, draw conclusions, and support decision-making.",
+            tags: ["Data Analysis", "Statistics", "Data Visualization", "Excel", "Python", "Pandas"],
         },
         {
             id: 4,
-            title: "Project 4",
+            title: "WEB DEVELOPMENT",
             description:
-                "End-to-end design for a food delivery platform including customer app, restaurant dashboard, and delivery tracking.",
-            tags: ["Multi-platform", "Service Design", "User Journey", "Branding"],
+                "Building websites and web applications, involving coding, design, and technologies that create interactive and user-friendly online experiences.",
+            tags: ["Web Development", "HTML", "CSS", "JavaScript", "React", "Frontend", "Backend", "Node.js"],
         },
         {
             id: 5,
-            title: "Project 5",
+            title: "NETWORKING",
             description:
-                "Patient portal design for healthcare providers with appointment scheduling and medical record management.",
-            tags: ["Healthcare", "Web Portal", "HIPAA Compliant", "Accessibility"],
+                " Connecting computers and devices to share information and resources, enabling communication over local and global networks like the internet.",
+            tags: ["Networking", "TCP/IP", "Routing", "Network Security", "LAN/WAN", "Protocols"],
         },
         {
             id: 6,
-            title: "Project 6",
+            title: "MACHINE LEARNING",
             description:
-                "Educational platform design with course management, progress tracking, and interactive learning modules.",
-            tags: ["EdTech", "LMS", "Interactive Design", "Gamification"],
+                "A field of AI where computers learn from data to make predictions or decisions without being explicitly programmed for each task.",
+            tags: ["Machine Learning", "AI", "Model Training", "Supervised Learning", "Scikit-learn", "TensorFlow"],
         },
     ]
 
