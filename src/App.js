@@ -1,6 +1,84 @@
-import { useState, useEffect } from "react"
-import "./App.css"
+import React, { useRef, useState, useEffect } from "react";
+import "./App.css";
 import profileImg from "./img/Profile.png";
+import project1Video from "./img/Project1.MOV";
+import project2Img from "./img/Project2.png";
+import project3Img from "./img/Project3.png";
+import project4Img from "./img/Project4.png";
+import project5Img from "./img/Project5.png";
+import project6Video from "./img/Project6.mp4";
+import cert1Img from "./Pages/Cert1.png";
+import cert2Img from "./Pages/Cert2.png";
+import cert3Img from "./Pages/Cert3.png";
+
+const PROJECTS = [
+    {
+        id: 1,
+        title: "ROBOTICS",
+        description: "The design and creation of machines that can perform tasks automatically, combining mechanics, electronics, and computer programming.",
+        tags: ["Robotics", "Automation", "Sensors", "Microcontrollers", "Embedded Systems"],
+        media: project1Video,
+        mediaType: "video"
+    },
+    {
+        id: 2,
+        title: "ELECTRONICS",
+        description: "The study and application of circuits and devices that control electrical currents for tasks like communication, computation, and sensing.",
+        tags: ["Electronics", "Circuits", "PCB Design", "Microcontrollers", "Signal Processing"],
+        media: project6Video,
+        mediaType: "video"
+    },
+    {
+        id: 3,
+        title: "DATA ANALYSIS",
+        description: "The process of inspecting and interpreting data to discover patterns, draw conclusions, and support decision-making.",
+        tags: ["Data Analysis", "Statistics", "Data Visualization", "Excel", "Python", "Pandas"],
+        media: project2Img,
+        mediaType: "img"
+    },
+    {
+        id: 4,
+        title: "WEB DEVELOPMENT",
+        description: "Building websites and web applications, involving coding, design, and technologies that create interactive and user-friendly online experiences.",
+        tags: ["Web Development", "HTML", "CSS", "JavaScript", "React", "Frontend", "Backend", "Node.js"],
+        media: project4Img,
+        mediaType: "img"
+    },
+    {
+        id: 5,
+        title: "NETWORKING",
+        description: "Connecting computers and devices to share information and resources, enabling communication over local and global networks like the internet.",
+        tags: ["Networking", "TCP/IP", "Routing", "Network Security", "LAN/WAN", "Protocols"],
+        media: project5Img,
+        mediaType: "img"
+    },
+    {
+        id: 6,
+        title: "MACHINE LEARNING",
+        description: "A field of AI where computers learn from data to make predictions or decisions without being explicitly programmed for each task.",
+        tags: ["Machine Learning", "AI", "Model Training", "Supervised Learning", "Scikit-learn", "TensorFlow"],
+        media: project3Img,
+        mediaType: "img"
+    }
+];
+
+const CERTIFICATES = [
+    {
+        title: "Cisco Networking Academy | Dec 2024",
+        subtitle: "Switching, Routing & Wireless Essentials",
+        img: cert1Img
+    },
+    {
+        title: "Cisco Networking Academy | May 2024",
+        subtitle: "Introduction of Networking",
+        img: cert2Img
+    },
+    {
+        title: "Mapua University | Nov 2023",
+        subtitle: "Blockchain Campus Conference",
+        img: cert3Img
+    }
+];
 
 
 // Main Portfolio Component
@@ -14,6 +92,8 @@ function Portfolio() {
         message: "",
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalImg, setModalImg] = useState("");
 
     useEffect(() => {
         const handleScroll = () => {
@@ -74,6 +154,15 @@ function Portfolio() {
         setIsSubmitting(false)
     }
 
+    const openModal = (img) => {
+        setModalImg(img);
+        setModalOpen(true);
+    };
+    const closeModal = () => {
+        setModalOpen(false);
+        setModalImg("");
+    };
+
     const navItems = [
         { id: "home", label: "Home" },
         { id: "about", label: "About" },
@@ -82,76 +171,31 @@ function Portfolio() {
         { id: "contacts", label: "Contacts" },
     ]
 
-    const projects = [
-        {
-            id: 1,
-            title: "ROBOTICS",
-            description:
-                " The design and creation of machines that can perform tasks automatically, combining mechanics, electronics, and computer programming.",
-            tags: ["Robotics", "Automation", "Sensors", "Microcontrollers", "Embedded Systems"],
-        },
-        {
-            id: 2,
-            title: "ELECTRONICS",
-            description:
-                " The study and application of circuits and devices that control electrical currents for tasks like communication, computation, and sensing.",
-            tags: ["Electronics", "Circuits", "PCB Design", "Microcontrollers", "Signal Processing"],
-        },
-        {
-            id: 3,
-            title: "DATA ANALYSIS",
-            description:
-                "The process of inspecting and interpreting data to discover patterns, draw conclusions, and support decision-making.",
-            tags: ["Data Analysis", "Statistics", "Data Visualization", "Excel", "Python", "Pandas"],
-        },
-        {
-            id: 4,
-            title: "WEB DEVELOPMENT",
-            description:
-                "Building websites and web applications, involving coding, design, and technologies that create interactive and user-friendly online experiences.",
-            tags: ["Web Development", "HTML", "CSS", "JavaScript", "React", "Frontend", "Backend", "Node.js"],
-        },
-        {
-            id: 5,
-            title: "NETWORKING",
-            description:
-                " Connecting computers and devices to share information and resources, enabling communication over local and global networks like the internet.",
-            tags: ["Networking", "TCP/IP", "Routing", "Network Security", "LAN/WAN", "Protocols"],
-        },
-        {
-            id: 6,
-            title: "MACHINE LEARNING",
-            description:
-                "A field of AI where computers learn from data to make predictions or decisions without being explicitly programmed for each task.",
-            tags: ["Machine Learning", "AI", "Model Training", "Supervised Learning", "Scikit-learn", "TensorFlow"],
-        },
-    ]
-
     const designSkills = [
-        { name: "UI Design", level: 95 },
-        { name: "UX Research", level: 90 },
-        { name: "Prototyping", level: 92 },
-        { name: "Wireframing", level: 88 },
-        { name: "User Testing", level: 85 },
+        { name: "UI Design", level: 0 },
+        { name: "UX Research", level: 0 },
+        { name: "Prototyping", level: 0 },
+        { name: "Wireframing", level: 0 },
+        { name: "User Testing", level: 0 },
     ]
 
     const technicalSkills = [
-        { name: "Figma", level: 98 },
-        { name: "Adobe XD", level: 90 },
-        { name: "Sketch", level: 85 },
-        { name: "Adobe Photoshop", level: 88 },
-        { name: "Adobe Illustrator", level: 82 },
+        { name: "Figma", level: 0 },
+        { name: "Adobe XD", level: 0 },
+        { name: "Sketch", level: 0 },
+        { name: "Adobe Photoshop", level: 0 },
+        { name: "Adobe Illustrator", level: 0 },
     ]
 
     const developmentSkills = [
-        { name: "HTML/CSS", level: 90 },
-        { name: "JavaScript", level: 75 },
-        { name: "React", level: 70 },
-        { name: "Tailwind CSS", level: 85 },
-        { name: "Responsive Design", level: 92 },
+        { name: "HTML/CSS", level: 0 },
+        { name: "JavaScript", level: 0 },
+        { name: "React", level: 0 },
+        { name: "Tailwind CSS", level: 0 },
+        { name: "Responsive Design", level: 0 },
     ]
 
-  return (
+    return (
       <div className="portfolio">
           {/* Navigation */}
           <nav className="navigation">
@@ -208,7 +252,7 @@ function Portfolio() {
                           I'M UI/UX
                           <br />
                           Designer
-                      </h1>
+                        </h1>
                       <p className="hero-description">I'm Jho Raven Abalos, Designer of UI/UX for Frontend Designs.</p>
 
                       <button onClick={scrollToProjects} className="hero-btn">
@@ -232,15 +276,15 @@ function Portfolio() {
                                   <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.749L12 10.855l9.615-7.034h.749c.904 0 1.636.732 1.636 1.636z" />
                               </svg>
                           </a>
-                      </div>
-                  </div>
+                        </div>
+                    </div>
 
                   {/* Profile Image */}
                   <div className="hero-image">
                       <img src={profileImg} alt="Jho Raven Abalos - UI/UX Designer" className="profile-img" />
-                  </div>
+                    </div>
               </main>
-          </section>
+            </section>
 
           {/* About Section */}
           <section id="about" className="about-section">
@@ -253,7 +297,7 @@ function Portfolio() {
                       </p>
                   </div>
 
-                  <div className="about-content">
+                    <div className="about-content">
                       <div className="about-text">
                           <h3>My Story</h3>
                           <p>
@@ -319,7 +363,7 @@ function Portfolio() {
                               <div className="card-icon">📅</div>
                               <div>
                                   <h4>Experience</h4>
-                                  <p>3+ Years in UI/UX Design</p>
+                                    <p>2+ Years in UI/UX Design</p>
                               </div>
                           </div>
 
@@ -327,7 +371,7 @@ function Portfolio() {
                               <div className="card-icon">📍</div>
                               <div>
                                   <h4>Location</h4>
-                                  <p>Philippines</p>
+                                    <p>Imus Cavite, Philippines</p>
                               </div>
                           </div>
 
@@ -335,13 +379,13 @@ function Portfolio() {
                               <div className="card-icon">🏆</div>
                               <div>
                                   <h4>Specialization</h4>
-                                  <p>Frontend UI/UX Design</p>
+                                    <p>Frontend UI/UX Design, Development, Data Science</p>
                               </div>
                           </div>
                       </div>
                   </div>
-              </div>
-          </section>
+                </div>
+            </section>
 
           {/* Skills Section */}
           <section id="skills" className="skills-section">
@@ -371,7 +415,7 @@ function Portfolio() {
 
                       <div className="skill-card">
                           <h3>Design Tools</h3>
-                          <div className="skills-list">
+                            <div className="skills-list">
                               {technicalSkills.map((skill) => (
                                   <div key={skill.name} className="skill-item">
                                       <span className="skill-name">{skill.name}</span>
@@ -380,7 +424,7 @@ function Portfolio() {
                                       </div>
                                   </div>
                               ))}
-                          </div>
+                            </div>
                       </div>
 
                       <div className="skill-card">
@@ -397,8 +441,8 @@ function Portfolio() {
                           </div>
                       </div>
                   </div>
-              </div>
-          </section>
+                </div>
+            </section>
 
           {/* Projects Section */}
           <section id="projects" className="projects-section">
@@ -412,29 +456,32 @@ function Portfolio() {
                   </div>
 
                   <div className="projects-grid">
-                      {projects.map((project) => (
-                          <div key={project.id} className="project-card">
-                              <div className="project-image">
-                                  <img src="/api/placeholder/400/300" alt={project.title} />
-                                  <div className="project-overlay">
-                                      <button className="project-btn">Live Demo</button>
-                                      <button className="project-btn">Code</button>
-                                  </div>
-                              </div>
-
-                              <div className="project-content">
-                                  <h3>{project.title}</h3>
-                                  <p>{project.description}</p>
-
-                                  <div className="project-tags">
-                                      {project.tags.map((tag) => (
-                                          <span key={tag} className="tag">
-                                              {tag}
-                                          </span>
-                                      ))}
-                                  </div>
-                              </div>
-                          </div>
+                        {PROJECTS.map((proj) => (
+                            <div
+                                className="project-card"
+                                key={proj.id}
+                            >
+                                {proj.mediaType === "video" ? (
+                                    <video
+                                        src={proj.media}
+                                        controls
+                                        className="project-media"
+                                    />
+                                ) : (
+                                    <img
+                                        src={proj.media}
+                                        alt={proj.title}
+                                        className="project-media"
+                                    />
+                                )}
+                                <div className="project-title">{proj.title}</div>
+                                <div className="project-desc">{proj.description}</div>
+                                <div className="project-tags">
+                                    {proj.tags.map(tag => (
+                                        <span className="project-tag" key={tag}>{tag}</span>
+                                    ))}
+                                </div>
+                            </div>
                       ))}
                   </div>
 
@@ -442,28 +489,31 @@ function Portfolio() {
                   <div className="certificates-section">
                       <h3>Certificates</h3>
                       <div className="certificates-grid">
-                          <div className="certificate-card" onClick={() => window.open("#", "_blank")}>
-                              <p className="cert-date">Cisco Networking Academy | Dec 2024</p>
-                              <h4>Switching, Routing & Wireless Essentials</h4>
-                          </div>
-
-                          <div className="certificate-card" onClick={() => window.open("#", "_blank")}>
-                              <p className="cert-date">Cisco Networking Academy | May 2024</p>
-                              <h4>Introduction of Networking</h4>
-                          </div>
-
-                          <div className="certificate-card" onClick={() => window.open("#", "_blank")}>
-                              <p className="cert-date">Mapua University | Nov 2023</p>
-                              <h4>Blockchain Campus Conference</h4>
-                          </div>
+                            {CERTIFICATES.map((cert, idx) => (
+                                <div className="certificate-card" key={idx}>
+                                    <img src={cert.img} alt={cert.title} className="certificate-img" />
+                                    <div className="certificate-title">{cert.title}</div>
+                                    <div className="certificate-subtitle">{cert.subtitle}</div>
+                                </div>
+                            ))}
                       </div>
                   </div>
 
                   <div className="section-footer">
-                      <button className="view-all-btn">View All Projects</button>
+                        <button
+                            className="view-all-btn"
+                            onClick={() => {
+                                const projectsSection = document.getElementById("projects");
+                                if (projectsSection) {
+                                    projectsSection.scrollIntoView({ behavior: "smooth" });
+                                }
+                            }}
+                        >
+                            View All Projects
+                        </button>
                   </div>
-              </div>
-          </section>
+                </div>
+            </section>
 
           {/* Contact Section */}
           <section id="contacts" className="contact-section">
@@ -471,7 +521,7 @@ function Portfolio() {
                   <div className="container">
                       <div className="contact-grid">
                           {/* Left Side - Contact Information */}
-                          <div className="contact-info">
+                            <div className="contact-info">
                               <h2>Get in Touch</h2>
 
                               <div className="contact-details">
@@ -498,7 +548,19 @@ function Portfolio() {
                           <div className="contact-form-container">
                               <h3>Send me a Message</h3>
 
-                              <form onSubmit={handleSubmit} className="contact-form">
+                                <form
+                                    className="contact-form"
+                                    onSubmit={e => {
+                                        e.preventDefault();
+                                        const contactName = formData.name;
+                                        const contactEmail = formData.email;
+                                        const contactSubject = formData.subject;
+                                        const contactMessage = formData.message;
+                                        window.location.href = `mailto:abalosjhoraven@gmail.com?subject=${encodeURIComponent(contactSubject)}&body=${encodeURIComponent(
+                                            `Name: ${contactName}\nEmail: ${contactEmail}\n\n${contactMessage}`
+                                        )}`;
+                                    }}
+                                >
                                   <div className="form-group">
                                       <label htmlFor="name">Name:</label>
                                       <input
@@ -549,13 +611,13 @@ function Portfolio() {
                                           rows={6}
                                           className="form-textarea"
                                       />
-                                  </div>
+                                    </div>
 
                                   <button type="submit" disabled={isSubmitting} className="form-submit">
                                       {isSubmitting ? "Sending..." : "Send message"}
                                   </button>
-                              </form>
-                          </div>
+                                </form>
+                            </div>
                       </div>
                   </div>
               </div>
@@ -596,10 +658,19 @@ function Portfolio() {
                           {/* Copyright */}
                           <p className="footer-copyright">@2025 Jho Abalos | All Rights Reserved.</p>
                       </div>
-                  </div>
-              </div>
+                    </div>
+                </div>
           </section>
-      </div>
+
+            {modalOpen && (
+                <div className="modal-overlay" onClick={closeModal}>
+                    <div className="modal-content" onClick={e => e.stopPropagation()}>
+                        <button className="modal-close" onClick={closeModal}>×</button>
+                        <img src={modalImg} alt="Certificate" style={{ width: "100%", maxWidth: 600, borderRadius: 12 }} />
+                    </div>
+                </div>
+            )}
+        </div>
   )
 }
 
